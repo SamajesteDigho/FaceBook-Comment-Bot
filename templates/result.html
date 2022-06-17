@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>resultats de la recherche</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+		body
+		{
+			background-color:#171f43;
+		}
+		.conteneur{
+			position: relative;
+			top:20px;
+			margin: auto;
+			width: 80%;
+			height:650px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+			border-radius: 10px;
+			display: flex;
+			background-color: white;
+		}
+
+		img{
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="conteneur">
+
+		<div style="flex:1;background-color: #047af9;color: white;display: flex;flex-direction: column;align-items: center;justify-content: space-between;">
+			
+			<img src="static/utility/search.png" style="width:30%;height: auto;">
+			<div style="display: flex;flex-direction: column;align-items: center;background-color: #f77500;width: 100%; height: 50%; padding: 10px 0px;">
+				<p>Image précédemment chargée: </p>
+				<img src="{{ source }}" alt="image chargée" style="border:solid white 2px; width: 90%; height: 80%; border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.3);">
+				<button style="background-color: white;border: none; padding: 5px; border-radius: 5px;margin-top: 10px;"><a href="/index" style="text-decoration: none;color: black;font-size: 0.8em;">choisir une autre image</a></button>
+			</div>
+			<p style="font-family:'roboto';font-size: 0.7em;">Ⓒ Copyright AIA_IV 2022 </p>
+		</div>
+
+
+
+		<div style="flex:2;overflow-y: auto;display: flex;flex-direction: column;align-items: center;">
+			<p style="font-size: 1.4em;"><span style="font-weight: 700">Résultats</span> de votre recherche</p>
+
+			<span>Predicted category is : <strong>{{ category }}</strong></span>
+			<section style="width: 90%">
+			{% if img_set %}
+				{% for image in img_set %}
+				<div style="display: flex;flex-direction: ;align-items: center; padding: 10px 5px;box-shadow: 0px 0px 5px rgba(0,0,0,0.2);border-radius: 5px;margin:10px 0px;">
+					<div style="text-align:center; border-right: solid black 2px; width:100px">
+						<img src="{{ image.img }}"><br>
+						<span><b><i>{{ image.object.name }}</i></b></span>
+					</div>
+					<div style="display: flex;flex-direction: column;align-items: center;font-family: 'roboto';font-size: 0.8em; padding-left=5px">
+						<span style="color:#f77500; ">Description</span>
+						<p style="word-break:all; text-align: justify;color:#171f43"> {{ image.object.description }} </p>
+						<div>
+							<label for="price">Price :</label>
+							<input type="text" size="5" name="price" id="price" value="${{ image.object.price }}" disabled>
+							<button style="background-color:green;" name="commander" id="commander" onclick="alert('This functionality is not yet available !!!')">Commander</button>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			{% else %}
+				<p>No result to display</p>
+			{% endif%}
+			</section>
+		</div>
+	</div>
+</body>
+</html>

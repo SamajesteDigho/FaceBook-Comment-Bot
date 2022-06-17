@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predictions</title>
+</head>
+<body>
+    <h1>Here the Predictons</h1>
+    Category : {{ category }} <br>
+    nb_in_category : {{ cat }} <br>
+    <hr>
+    {% for img in img_set %}
+        <img src="{{ img }}" alt="Bonjour le monde">
+    {% endfor %}
+</body>
+</html>
